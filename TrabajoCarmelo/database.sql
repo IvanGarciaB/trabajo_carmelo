@@ -1,4 +1,4 @@
-CREATE TABLE `test`.`new_table` (
+CREATE TABLE `test`.`post` (
 `id` INT NOT NULL AUTO_INCREMENT,
 `fecha` DATE NULL,
 `titulo` VARCHAR(45) NULL,
