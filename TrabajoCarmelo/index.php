@@ -17,6 +17,13 @@
         max-width: 100%; /* La imagen se ajustará al ancho de su contenedor */
         height: auto;
     }
+
+    .read-more {
+        display: block;
+        margin-top: 10px;
+        color: #007bff; /* Puedes cambiar el color según tu preferencia */
+        cursor: pointer;
+    }
 </style>
 
 <!-- Contenido específico de la página -->
@@ -64,12 +71,21 @@
 function mostrarPost($row) {
     echo "<div class='card'>";
     echo "<h2>" . $row["titulo"] . "</h2>";
-    echo "<p>" . $row["noticia"] . "</p>";
+
+    // Truncar el texto de noticia a 75 caracteres
+    $noticia = strlen($row["noticia"]) > 75 ? substr($row["noticia"], 0, 75) . "..." : $row["noticia"];
+
+    echo "<p>" . $noticia . "</p>";
 
     // Mostrar la imagen con un tamaño controlado
     echo "<img src='" . $row["imagen"] . "' alt='Imagen del post' class='post-image'>";
 
     echo "<p>Fecha: " . $row["fecha"] . "</p>";
+
+    // Agregar botón "Leer más" que lleva al post completo
+    echo "<a href='post-completo.php?id=" . $row["id"] . "' class='read-more'>Leer más</a>";
+
     echo "</div>";
 }
 ?>
+
