@@ -1,24 +1,30 @@
 <?php
-$correo=$_POST['correo'];
-$contraseña=$_POST['contraseña'];
+session_start();
 
-$conexion=new PDO('mysql:host=localhost;dbname=test','root','');
-$sql = "SELECT correo, contraseña FROM usuarios WHERE correo = :correo";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $correo = $_POST['correo'];
+    $contraseña = $_POST['contraseña'];
 
-$stmt = $conexion->prepare($sql);
-$stmt->bindParam(':correo',$correo);
-$stmt->execute();
+    try {
+        $conexion = new PDO('pgsql:host=localhost;dbname=usuarios;user=postgres;password=curso');
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM usuarios WHERE correo = :correo";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->execute();
 
-if ($result) {
-    // Verificar si la contraseña coincide utilizando password_verify
-    if (password_verify($contraseña, $result['contraseña'])) {
-        session_start();
-        $_SESSION['usuario'] = $correo;
-        header('creacion-post.php');
-    } else {
-        echo '<p>Usuario no válido</p>';
-        echo '<a href="registro.php">Alta de usuarios</a>';
-    }//cierra else
-}//cierra primer if
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
+            // Inicio de sesión exitoso
+            $_SESSION['usuario_id'] = $usuario['id'];
+            echo "Inicio de sesión exitoso. Bienvenido, " . $correo;
+        } else {
+            echo "Credenciales incorrectas. Intenta de nuevo.";
+        }
+    } catch (PDOException $e) {
+        echo "Error de PDO: " . $e->getMessage();
+    }
+}
+?>
