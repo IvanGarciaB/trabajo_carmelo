@@ -40,7 +40,7 @@
 <nav>
     <a href="index.php">Inicio</a>
     <a href="privada.php">publicar post </a>
-    <a href="registro.php"> </a>
+    <a href="registro.php">registrarse</a>
 
     <!-- Puedes agregar más enlaces según tus necesidades -->
 </nav>
