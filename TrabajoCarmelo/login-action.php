@@ -3,7 +3,7 @@ $correo=$_POST['correo'];
 $contraseña=$_POST['contraseña'];
 
 $conexion=new PDO('mysql:host=localhost;dbname=test','root','');
-$sql = "SELECT correo, contraseña FROM usuariosdaw WHERE correo = :correo";
+$sql = "SELECT correo, contraseña FROM usuarios WHERE correo = :correo";
 
 $stmt = $conexion->prepare($sql);
 $stmt->bindParam(':correo',$correo);
@@ -16,7 +16,7 @@ if ($result) {
     if (password_verify($contraseña, $result['contraseña'])) {
         session_start();
         $_SESSION['usuario'] = $correo;
-        header('Location:../vistas/privado.php');
+        header('creacion-post.php');
     } else {
         echo '<p>Usuario no válido</p>';
         echo '<a href="registro.php">Alta de usuarios</a>';
