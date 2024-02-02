@@ -19,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
             // Inicio de sesión exitoso
             $_SESSION['usuario_id'] = $usuario['id'];
-            echo "Inicio de sesión exitoso. Bienvenido, " . $correo;
+
+            // Redirigir a privada.php
+            header('Location: privada.php');
+            exit(); // Asegúrate de salir después de la redirección
         } else {
             echo "Credenciales incorrectas. Intenta de nuevo.";
         }
