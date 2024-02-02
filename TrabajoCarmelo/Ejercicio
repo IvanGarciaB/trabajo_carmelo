@@ -1,0 +1,44 @@
+barra de navegación + icono logo ->header.php
+diseño de pie de página ->footer.php
+include('header.php')
+include('footer.php')
+
+portada - publico
+entradas de post : titulo - 30 caracteres leer más - foto
+
+leer más - ficha - publico
+titulo+texto de noticia + imagen más amplia
+
+escribir - privada - login - registro
+formulario
+titulo - texto - foto botíon publicar
+
+------------------------Seguridad
+postgres
+usuarios : id - correo - contraseña (cifrada) - rol
+1-admin@gmail.com-123-admin
+2-editor@gmail.com-123-editor
+3-revisor@gmail.com-123-editor
+----------------------------Contenido
+mysql
+post : id-fecha-titulo-noticia-imagen
+
+------------------------------------------------
+github como entorno colaborativo
+ivan-jimenez alonso-pozuelo
+marcos-rufian-ruben
+sara-jorge-jorge
+jorge-jl-hugo-hector
+alvaro-jorge-miguel
+oscar-mario-miranda
+
+*no os podéis levantar del sitio
+
+Actividad
+primer nombre de cada grupo : compartir enlace github y la comunicación conmigo
+responsable de cómo está organizado github (repo, ramas, readme, license)
+
+segundo nombre : responsable de las bases de datos : poner a disposición
+scripts de las bases de datos - connectionstring - permisos
+
+tercer nombre : ux/io usabilidad navegación
