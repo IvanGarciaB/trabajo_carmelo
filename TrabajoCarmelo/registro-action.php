@@ -1,33 +1,29 @@
 <?php
-session_start();
+$correo = $_POST['correo'];
+$contraseña = $_POST['contraseña'];
+$rol = $_POST['rol'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $correo = $_POST['correo'];
-    $contraseña = $_POST['contraseña'];
+$opciones = [
+    'cost' => 12, // Mayor costo = mayor seguridad, pero mayor tiempo de procesamiento
+];
+$hash = password_hash($contraseña, PASSWORD_BCRYPT, $opciones);
 
-    try {
-        $conexion = new PDO('pgsql:host=localhost;dbname=usuarios;user=postgres;password=curso');
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conexion = new PDO('pgsql:host=localhost;dbname=usuarios;user=postgres;password=curso');
 
-        $sql = "SELECT * FROM usuarios WHERE correo = :correo";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindParam(':correo', $correo);
-        $stmt->execute();
+$sql = "INSERT INTO usuarios (correo, contraseña, rol) VALUES (:correo, :password, :rol)";
 
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $conexion->prepare($sql);
+$stmt->bindParam(':correo', $correo);
+$stmt->bindParam(':password', $hash);
+$stmt->bindParam(':rol', $rol);
 
-        if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
-            // Inicio de sesión exitoso
-            $_SESSION['usuario_id'] = $usuario['id'];
-
-            // Redirigir a privada.php
-            header('Location: privada.php');
-            exit(); // Asegúrate de salir después de la redirección
-        } else {
-            echo "Credenciales incorrectas. Intenta de nuevo.";
-        }
-    } catch (PDOException $e) {
-        echo "Error de PDO: " . $e->getMessage();
+try {
+    if ($stmt->execute()) {
+        echo "Registro creado exitosamente";
+    } else {
+        echo "Error al crear el registro: " . $stmt->errorInfo()[2];
     }
+} catch (PDOException $e) {
+    echo "Error de PDO: " . $e->getMessage();
 }
 ?>
