@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (password_verify($contraseña, $usuario['contraseña'])) {
                 session_start();
                 $_SESSION['usuario'] = $correo;
-                header('creacion-post.php');
+                header('Location: creacion-post.php');
             } else {
                 echo '<p>Usuario no válido</p>';
                 echo '<a href="registro.php">Alta de usuarios</a>';
