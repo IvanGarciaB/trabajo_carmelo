@@ -1,4 +1,5 @@
 <?php
+include('header.php');
 // Verifica si se proporcionó un ID en la URL
 if (isset($_GET['id'])) {
     $idNoticia = $_GET['id'];
@@ -26,7 +27,10 @@ if (isset($_GET['id'])) {
 
         // Mostrar el contenido completo de la noticia
         echo "<h2>" . $row["titulo"] . "</h2>";
-        echo "<img src='" . $row["imagen"] . "' alt='Imagen del post'>";
+
+        // Establecer el tamaño de la imagen a 500x500
+        echo "<img src='" . $row["imagen"] . "' alt='Imagen del post' style='max-width: 500px; max-height: 500px;'>";
+
         echo "<p>" . $row["noticia"] . "</p>";
         echo "<p>Fecha: " . $row["fecha"] . "</p>";
     } else {
