@@ -26,7 +26,7 @@ if (!isset($_SESSION['usuario'])) {
 
         <div class="mb-4">
             <label for="noticia" class="block text-gray-700 text-sm font-bold mb-2">Contenido de la noticia</label>
-            <textarea name="texto" id="texto" rows="4" class="w-full px-4 py-2 border rounded-md resize-none focus:outline-none focus:border-blue-500"></textarea>
+            <textarea name="noticia" id="noticia" rows="4" class="w-full px-4 py-2 border rounded-md resize-none focus:outline-none focus:border-blue-500"></textarea>
         </div>
 
         <div class="mb-4">
