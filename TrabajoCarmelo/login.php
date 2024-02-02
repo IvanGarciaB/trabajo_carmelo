@@ -10,7 +10,7 @@
 
 <div class="max-w-md mx-auto bg-white rounded p-8 shadow-md">
     <h2 class="text-2xl font-semibold mb-4">Login de usuarios</h2>
-    <form method="post" action="../servicios/login-action.php">
+    <form method="post" action="login-action.php">
         <div class="mb-4">
             <label for="correo" class="block text-gray-700 text-sm font-bold mb-2">Correo electrónico</label>
             <input type="email" name="correo" id="correo" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
