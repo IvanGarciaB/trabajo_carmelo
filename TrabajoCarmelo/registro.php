@@ -19,11 +19,15 @@
             <label for="contraseña" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
             <input type="password" name="contraseña" id="contraseña" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
         </div>
-        <div>
+        <div class="mb-4">
             <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none">Crear usuario</button>
         </div>
     </form>
+    <p class="text-center text-gray-600 text-sm mt-4">
+        ¿Ya estás registrado? <a href="login.php" class="text-blue-500">Inicia sesión</a>
+    </p>
 </div>
 
 </body>
 </html>
+
