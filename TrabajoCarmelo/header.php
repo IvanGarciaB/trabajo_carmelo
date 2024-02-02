@@ -39,8 +39,8 @@
 <!-- Barra de Navegación -->
 <nav>
     <a href="index.php">Inicio</a>
-    <a href="creacion-post.php">publicar post </a>
-    <a href="registro.php">registrarse</a>
+    <a href="creacion-post.php">Publicar post </a>
+    <a href="registro.php">Registrarse</a>
 
     <!-- Puedes agregar más enlaces según tus necesidades -->
 </nav>

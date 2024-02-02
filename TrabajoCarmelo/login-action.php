@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($usuario) {
             // Verificar si la contraseña coincide utilizando password_verify
             if (password_verify($contraseña, $usuario['contraseña'])) {
-                session_start();
                 $_SESSION['usuario'] = $correo;
                 header('Location: creacion-post.php');
             } else {
