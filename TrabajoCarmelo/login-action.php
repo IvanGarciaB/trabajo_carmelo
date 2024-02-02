@@ -16,18 +16,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
-            // Inicio de sesión exitoso
-            $_SESSION['usuario_id'] = $usuario['id'];
-
-            // Redirigir a privada.php
-            header('Location: privada.php');
-            exit(); // Asegúrate de salir después de la redirección
+        if ($usuario) {
+            // Verificar si la contraseña coincide utilizando password_verify
+            if (password_verify($contraseña, $usuario['contraseña'])) {
+                session_start();
+                $_SESSION['usuario'] = $correo;
+                header('creacion-post.php');
+            } else {
+                echo '<p>Usuario no válido</p>';
+                echo '<a href="registro.php">Alta de usuarios</a>';
+            }
         } else {
-            echo "Credenciales incorrectas. Intenta de nuevo.";
+            echo '<p>Usuario no encontrado</p>';
+            echo '<a href="registro.php">Alta de usuarios</a>';
         }
     } catch (PDOException $e) {
-        echo "Error de PDO: " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
