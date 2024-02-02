@@ -11,7 +11,7 @@ $conexion = new PDO('mysql:host=localhost;dbname=test', 'root', '');
 
 // Se comprueba si se ha enviado un formulario para publicar un post
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['publicar_post'])) {
-    $fechaPublicacion = date('Y-m-d');
+    $fechaPublicacion = date(date());
     $titulo = $_POST['titulo'];
     $noticia = $_POST['noticia'];
 
