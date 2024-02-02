@@ -1,4 +1,6 @@
 <!-- footer.php -->
+<html>
+<body>
 
 <!-- Aquí puedes agregar el diseño de tu pie de página -->
 <footer>
